@@ -19,7 +19,7 @@ const UserPage = () => {
               'Content-Type': 'application/json',
               'Accept': 'application/vnd.api+json',
             },
-            withCredentials: true,
+             
           }
         );
         const user = response.data;
@@ -61,7 +61,7 @@ const UserPage = () => {
             'Content-Type': 'application/json',
             'Accept': 'application/vnd.api+json',
           },
-          withCredentials: true,
+          
         }
       );
       const updatedUser = response.data;
