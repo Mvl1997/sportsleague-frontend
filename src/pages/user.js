@@ -16,10 +16,10 @@ const UserPage = () => {
           `https://staging.sportsleague.be/user/${loggedInPlayerUsername}?_format=json`,
           {
             headers: {
-              'Content-Type': 'application/vnd.api+json',
-              Accept: 'application/vnd.api+json',
+              'Content-Type': 'application/json',
+              'Accept': 'application/vnd.api+json',
             },
-            
+            withCredentials: true,
           }
         );
         const user = response.data;
@@ -58,10 +58,10 @@ const UserPage = () => {
         userData,
         {
           headers: {
-            'Content-Type': 'application/vnd.api+json',
-            Accept: 'application/vnd.api+json',
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.api+json',
           },
-          
+          withCredentials: true,
         }
       );
       const updatedUser = response.data;
