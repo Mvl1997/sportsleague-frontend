@@ -52,23 +52,23 @@ const UserPage = () => {
     const { name, value } = e.target;
     setUserData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: [{ value, format: 'plain_text' }],
+      
     }));
   };
 
   const handleSave = async () => {
     try {
+      const sessionToken1 = localStorage.getItem('token');
       const response = await axios.patch(
         `https://staging.sportsleague.be/user/${userData.name[0].value}?_format=json`,
-        userData,
+        JSON.stringify(userData), 
         {
+          withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
-            'Content-Encoding': 'application/json',
-            
-            
+            'X-CSRF-Token': sessionToken1,
           },
-          
         }
       );
       const updatedUser = response.data;
