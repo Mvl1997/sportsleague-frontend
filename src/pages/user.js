@@ -64,6 +64,7 @@ const UserPage = () => {
         {
           headers: {
             'Content-Type': 'application/json',
+            'Content-Encoding': 'application/json',
             
             
           },
