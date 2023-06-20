@@ -24,7 +24,7 @@ const LoginPage = () => {
         },
         {
           headers: {
-            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/json',
             'X-XSRF-Token': csrfToken,
           },
         }
