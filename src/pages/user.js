@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pane, Heading, Text, Spinner, UnorderedList, ListItem, Badge, Button, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const UserPage = () => {
   const [userData, setUserData] = useState(null);
@@ -54,6 +55,7 @@ const UserPage = () => {
       ...prevData,
       [name]: [{ value, format: 'plain_text' }],
       
+      
     }));
   };
 
@@ -99,6 +101,12 @@ const UserPage = () => {
       >
         Logout
       </Button>
+      <Link href="/clubinfo">
+  <Button appearance="primary" position="absolute" top={10} right={80} zIndex={1} intent="success">
+    Club Info
+  </Button>
+</Link>
+
       <Heading size={800} marginBottom={20}>
         Welcome, {userData.name[0].value}
       </Heading>
