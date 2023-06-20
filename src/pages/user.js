@@ -15,11 +15,15 @@ const UserPage = () => {
         const sessionToken = localStorage.getItem('token');
         const response = await axios.get(
           `https://staging.sportsleague.be/user/${loggedInPlayerUsername}?_format=json`,
+          
           {
+            withCredentials: true,
             headers: {
               'Content-Type': 'application/json',
-              'Accept': 'application/json',
+              'X-CSRF-Token': sessionToken,
               
+              
+               
             },
           }
         );
