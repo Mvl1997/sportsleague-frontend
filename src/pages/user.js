@@ -13,7 +13,6 @@ const UserPage = () => {
       try {
         const loggedInPlayerUsername = localStorage.getItem('username');
         const sessionToken = localStorage.getItem('token');
-        console.log(sessionToken);
         const response = await axios.get(
           `https://staging.sportsleague.be/user/${loggedInPlayerUsername}?_format=json`,
           {
@@ -22,8 +21,6 @@ const UserPage = () => {
               'Accept': 'application/json',
               
             },
-           
-            
           }
         );
         const user = response.data;
