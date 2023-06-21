@@ -143,7 +143,7 @@ const RegistrationPage = () => {
               value={birthday}
               onChange={(e) => setBirthday(e.target.value)}
             />
-          </Pane>""
+          </Pane>
           <Pane marginBottom={16}>
             <Text>Telephone Number:</Text>
             <TextInput
