@@ -169,17 +169,8 @@ const UserPage = () => {
       </Pane>
       <Pane marginBottom={20}>
         <Text>
-          <strong>Email:</strong>
-          {editMode ? (
-            <TextInput
-              name="mail"
-              value={userData.mail[0].value}
-              onChange={handleInputChange}
-            />
-          ) : (
-            userData.mail[0].value
-          )}
-        </Text>
+          <strong>Email:</strong> {userData.mail[0].value}
+             </Text>
       </Pane>
       <Pane marginBottom={20}>
         <Text>
@@ -197,6 +188,7 @@ const UserPage = () => {
     {editMode ? (
       <RadioGroup
         name="field_gender"
+        size={16}
         value={editedGender}
         options={[
           { label: 'Male', value: '1' },
@@ -215,6 +207,7 @@ const UserPage = () => {
     {editMode ? (
       <RadioGroup
         name="field_ranking"
+        size={16}
         value={editedRanking}
         options={[
           { label: 'Single Ranking', value: '1' },
