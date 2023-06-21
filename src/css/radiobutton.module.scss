@@ -1,0 +1,5 @@
+
+
+.custom-radio-group input[type='radio']:checked + span::before {
+  background-color: green;
+}

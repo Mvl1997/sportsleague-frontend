@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { Pane, Heading, Text, TextInput, Button, Link } from 'evergreen-ui';
+import { Pane, Heading, Text, TextInput, Button, Link, toaster } from 'evergreen-ui';
 import backgroundImage from '../images/background.jpeg';
 
 const LoginPage = () => {
@@ -46,7 +46,7 @@ const LoginPage = () => {
     } catch (error) {
       // Handle login error
       setError('Login failed. Please check your credentials.');
-      router.push('/login-failed-page');
+      toaster.danger("Login Failed! Please check your credentials.")
     }
   };
   

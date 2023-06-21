@@ -3,6 +3,7 @@ import { Pane, Heading, Button } from 'evergreen-ui';
 import Link from 'next/link';
 import backgroundImage from '../images/background.jpeg'; // Import the image
 
+
 const HomePage = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');

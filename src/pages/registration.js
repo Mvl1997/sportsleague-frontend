@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Pane, Heading, TextInput, Button, Text, Link, toaster, RadioGroup } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import styles from '../css/radiobutton.module.scss';
+
 
 const RegistrationPage = () => {
   const router = useRouter();
@@ -77,11 +79,13 @@ const RegistrationPage = () => {
 
       // Assuming a successful registration
       console.log(response.data);
-      toaster.success("Your registration was succesful!")
+      toaster.success('Your registration was succesful!')
+      // Redirect the user to the login page
       router.push('/login');
     } catch (error) {
       // Handle registration error
       setError('Registration failed. Please try again.');
+      toaster.danger("Registration failed. Please try again.")
     }
   };
 
@@ -124,8 +128,7 @@ const RegistrationPage = () => {
             />
           </Pane>
           <Pane marginBottom={16}>
-            <Text>Email:</Text> 
-            <br />
+            <Text>Email:</Text>
             <TextInput
               name="email"
               type="email"
@@ -134,7 +137,7 @@ const RegistrationPage = () => {
             />
           </Pane>
           <Pane marginBottom={16}>
-            <Text>Birthday:</Text>
+            <Text>Birthday: (yyyy-mm-dd)</Text>
             <TextInput
               name="birthday"
               value={birthday}
@@ -151,8 +154,9 @@ const RegistrationPage = () => {
           </Pane>
           <Pane marginBottom={16}>
             <RadioGroup
+              name="registration-gender"
               label="Gender"
-              size= {16}
+              size={16}
               value={gender}
               options={[
                 { label: 'Male', value: 'male' },
@@ -160,10 +164,12 @@ const RegistrationPage = () => {
               ]}
               onChange={(value) => setGender(value)}
               marginBottom={8}
+              className={styles['custom-radio-group']}
             />
           </Pane>
           <Pane marginBottom={16}>
             <RadioGroup
+              name="registration-ranking"
               label="Ranking"
               size={16}
               value={ranking}
@@ -173,6 +179,7 @@ const RegistrationPage = () => {
               ]}
               onChange={(value) => setRanking(value)}
               marginBottom={8}
+              className={styles['custom-radio-group']}
             />
           </Pane>
           <Button type="submit" appearance="primary" marginTop={8}>

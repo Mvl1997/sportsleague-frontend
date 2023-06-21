@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pane, Heading, Text, Spinner, UnorderedList, ListItem, Badge, Button, TextInput } from 'evergreen-ui';
+import { Pane, Heading, Text, Spinner, UnorderedList, ListItem, Badge, Button, TextInput, RadioGroup, toaster } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const UserPage = () => {
   const [userData, setUserData] = useState(null);
   const [editMode, setEditMode] = useState(false);
+  const [editedGender, setEditedGender] = useState(userData?.field_gender[0]?.value || '');
+  const [editedRanking, setEditedRanking] = useState(userData?.field_ranking[0]?.value || '');
+
   const router = useRouter();
 
   useEffect(() => {
@@ -43,6 +46,7 @@ const UserPage = () => {
     localStorage.removeItem('cookie');
     localStorage.removeItem('username');
     router.push('/login');
+    toaster.success("Logout Succesful!");
   };
 
   const handleEdit = () => {
@@ -54,17 +58,26 @@ const UserPage = () => {
     setUserData((prevData) => ({
       ...prevData,
       [name]: [{ value, format: 'plain_text' }],
-      
-      
     }));
+  
+    if (name === 'field_gender') {
+      setEditedGender(value);
+    } else if (name === 'field_ranking') {
+      setEditedRanking(value);
+    }
   };
+  
 
   const handleSave = async () => {
     try {
       const sessionToken1 = localStorage.getItem('token');
       const response = await axios.patch(
         `https://staging.sportsleague.be/user/${userData.name[0].value}?_format=json`,
-        JSON.stringify(userData), 
+        JSON.stringify({
+          ...userData,
+          field_gender: [{ value: editedGender, format: 'plain_text' }],
+          field_ranking: [{ value: editedRanking, format: 'plain_text' }],
+        }),
         {
           withCredentials: true,
           headers: {
@@ -76,8 +89,10 @@ const UserPage = () => {
       const updatedUser = response.data;
       setUserData(updatedUser);
       setEditMode(false);
+      toaster.success('Info updated successfully!')
     } catch (error) {
       console.error('Error saving user data', error);
+      toaster.danger("Something went wrong! Please check your info!")
     }
   };
 
@@ -102,7 +117,7 @@ const UserPage = () => {
         Logout
       </Button>
       <Link href="/clubinfo">
-  <Button appearance="primary" position="absolute" top={10} right={80} zIndex={1} intent="success">
+  <Button appearance="primary" position="absolute" marginRight={10} top={10} right={80} zIndex={1} intent="success">
     Club Info
   </Button>
 </Link>
@@ -177,15 +192,42 @@ const UserPage = () => {
         </Text>
       </Pane>
       <Pane marginBottom={20}>
-        <Text>
-          <strong>Gender:</strong> {userData.field_gender[0].value ? 'Male' : 'Female'}
-        </Text>
-      </Pane>
-      <Pane marginBottom={20}>
-        <Text>
-          <strong>Ranking:</strong> {userData.field_ranking[0].value ? 'Single Ranking' : 'Double Ranking'}
-        </Text>
-      </Pane>
+  <Text>
+    <strong>Gender:</strong>
+    {editMode ? (
+      <RadioGroup
+        name="field_gender"
+        value={editedGender}
+        options={[
+          { label: 'Male', value: '1' },
+          { label: 'Female', value: '0' },
+        ]}
+        onChange={handleInputChange}
+      />
+    ) : (
+      userData.field_gender[0].value ? 'Male' : 'Female'
+    )}
+  </Text>
+</Pane>
+<Pane marginBottom={20}>
+  <Text>
+    <strong>Ranking:</strong>
+    {editMode ? (
+      <RadioGroup
+        name="field_ranking"
+        value={editedRanking}
+        options={[
+          { label: 'Single Ranking', value: '1' },
+          { label: 'Double Ranking', value: '0' },
+        ]}
+        onChange={handleInputChange}
+      />
+    ) : (
+      userData.field_ranking[0].value ? 'Single Ranking' : 'Double Ranking'
+    )}
+  </Text>
+</Pane>
+
       <Pane marginBottom={20}>
         <Text>
           <strong>Availability:</strong>
