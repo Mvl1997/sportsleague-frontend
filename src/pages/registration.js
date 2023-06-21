@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pane, Heading, TextInput, Button, Text, Link, Radio, RadioGroup } from 'evergreen-ui';
+import { Pane, Heading, TextInput, Button, Text, Link, toaster, RadioGroup } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
@@ -77,7 +77,7 @@ const RegistrationPage = () => {
 
       // Assuming a successful registration
       console.log(response.data);
-      // Redirect the user to the login page
+      toaster.success("Your registration was succesful!")
       router.push('/login');
     } catch (error) {
       // Handle registration error
