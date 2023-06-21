@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { Pane, Heading, Text, TextInput, Button } from 'evergreen-ui';
+import { Pane, Heading, Text, TextInput, Button, Link } from 'evergreen-ui';
 import backgroundImage from '../images/background.jpeg';
 
 const LoginPage = () => {
@@ -123,6 +123,11 @@ const LoginPage = () => {
           </Button>
         </Pane>
       </form>
+      <Link href="/">
+        <Button appearance="primary" marginTop={10} intent="success">
+          Back to Home
+        </Button>
+      </Link>
     </Pane>
   );
 };

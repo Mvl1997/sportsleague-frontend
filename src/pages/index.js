@@ -30,6 +30,11 @@ const HomePage = () => {
           Login
         </Button>
       </Link>
+      <Link href="/registration">
+  <Button appearance="primary" marginTop={10} intent="success">
+    Register
+  </Button>
+</Link>
     </Pane>
   );
 };
