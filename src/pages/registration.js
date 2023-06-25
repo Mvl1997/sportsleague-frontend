@@ -22,7 +22,7 @@ const RegistrationPage = () => {
 
     try {
       const response = await axios.post(
-        'https://staging.sportsleague.be/user/register?_format=json',
+        `${process.env.DRUPAL_API_BASE_URL}/user/register?_format=json`,
         {
           name: [
             {

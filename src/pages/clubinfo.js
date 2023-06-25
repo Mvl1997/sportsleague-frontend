@@ -11,8 +11,8 @@ const ClubInfo = () => {
     const fetchData = async () => {
       try {
         const sessionToken = localStorage.getItem('token');
-        const clubResponse = axios.get('https://staging.sportsleague.be/clubpage?_format=json');
-        const userResponse = axios.get('https://staging.sportsleague.be/user/club1?_format=json',
+        const clubResponse = axios.get(`${process.env.DRUPAL_API_BASE_URL}/clubpage?_format=json`);
+        const userResponse = axios.get(`${process.env.DRUPAL_API_BASE_URL}/user/club1?_format=json`,
         {
             withCredentials: true,
             headers: {

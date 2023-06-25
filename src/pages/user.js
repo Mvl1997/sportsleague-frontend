@@ -18,7 +18,7 @@ const UserPage = () => {
         const loggedInPlayerUsername = localStorage.getItem('username');
         const sessionToken = localStorage.getItem('token');
         const response = await axios.get(
-          `https://staging.sportsleague.be/user/${loggedInPlayerUsername}?_format=json`,
+          `${process.env.DRUPAL_API_BASE_URL}/user/${loggedInPlayerUsername}?_format=json`,
           
           {
             withCredentials: true,
@@ -72,7 +72,7 @@ const UserPage = () => {
     try {
       const sessionToken1 = localStorage.getItem('token');
       const response = await axios.patch(
-        `https://staging.sportsleague.be/user/${userData.name[0].value}?_format=json`,
+        `${process.env.DRUPAL_API_BASE_URL}/user/${userData.name[0].value}?_format=json`,
         JSON.stringify({
           ...userData,
           field_gender: [{ value: editedGender, format: 'plain_text' }],

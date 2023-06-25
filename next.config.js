@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {}
 
+require('dotenv').config();
+
 module.exports = nextConfig
 module.exports = {
     webpack: (config) => {
@@ -17,6 +19,9 @@ module.exports = {
       });
   
       return config;
+    },
+    env: {
+      DRUPAL_API_BASE_URL: process.env.DRUPAL_API_BASE_URL,
     },
   };
   

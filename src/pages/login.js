@@ -17,7 +17,7 @@ const LoginPage = () => {
       const csrfToken = await fetchCSRFToken();
   
       const response = await axios.post(
-        'https://staging.sportsleague.be/user/login?_format=json',
+        `${process.env.DRUPAL_API_BASE_URL}/user/login?_format=json`,
         {
           name: username,
           pass: password,
@@ -54,7 +54,7 @@ const LoginPage = () => {
   // Function to retrieve the CSRF token from the backend
   const fetchCSRFToken = async () => {
     const response = await axios.get(
-      'https://staging.sportsleague.be/session/token',
+      `${process.env.DRUPAL_API_BASE_URL}/session/token`,
       {
         headers: {
           'Content-Type': 'application/json',
