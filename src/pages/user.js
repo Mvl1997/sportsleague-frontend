@@ -313,6 +313,14 @@ const UserPage = () => {
           Edit
         </Button>
       )}
+       <Pane background="white" padding={20} textAlign="center">
+        <Text size={300} color="muted">
+          &copy; SportsLeague 2023. All rights reserved. |{' '}
+          <Link href="/privacy" target="_blank">
+            Privacy Statement
+          </Link>
+        </Text>
+      </Pane>
     </Pane>
   );
 };

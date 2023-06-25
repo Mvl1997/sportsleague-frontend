@@ -103,7 +103,7 @@ const RegistrationPage = () => {
   };
 
   return (
-    <Pane display="flex" alignItems="center" justifyContent="center" height="100vh">
+    <Pane display="flex" flexDirection="column" alignItems="center" justifyContent="space-between" height="100vh">
       <Link href="/">
         <Button appearance="primary" position="absolute" top={10} right={10} zIndex={1} intent="success">
           Back to Home
@@ -142,6 +142,7 @@ const RegistrationPage = () => {
           </Pane>
           <Pane marginBottom={16}>
             <Text>Email:</Text>
+            <br/>
             <TextInput
               name="email"
               type="email"
@@ -200,7 +201,17 @@ const RegistrationPage = () => {
           </Button>
         </form>
       </Pane>
+      <Pane background="white" padding={20} textAlign="center">
+        <Text size={300} color="muted">
+          &copy; SportsLeague 2023. All rights reserved. |{' '}
+          <Link href="/privacy" target="_blank">
+            Privacy Statement
+          </Link>
+        </Text>
+      </Pane>
+     
     </Pane>
+    
   );
 };
 
