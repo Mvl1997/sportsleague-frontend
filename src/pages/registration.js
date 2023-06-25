@@ -83,10 +83,23 @@ const RegistrationPage = () => {
       // Redirect the user to the login page
       router.push('/login');
     } catch (error) {
-      // Handle registration error
-      setError('Registration failed. Please try again.');
-      toaster.danger("Registration failed. Please try again.")
+      if (error.response && error.response.data) {
+        const responseData = error.response.data;
+    
+        if (responseData && responseData.message) {
+          setError(responseData.message);
+          toaster.danger('Registration failed. Please try again.');
+        } else {
+          setError('Registration failed. Please try again.');
+          toaster.danger('Registration failed. Please try again.');
+        }
+      } else {
+        setError('Registration failed. Please try again.');
+        toaster.danger('Registration failed. Please try again.');
+      }
     }
+    
+    
   };
 
   return (
