@@ -262,7 +262,7 @@ const UserPage = () => {
 
       <Pane marginBottom={20}>
         <Text>
-          <strong>Availability:</strong>
+          <strong>Availability:</strong> <br/> ex. (yyyy-mm-dd<strong>T</strong>hh:mm:ss<strong>+00:00</strong>)
         </Text>
         {editMode ? (
           editedAvailability.map((availability, index) => (
